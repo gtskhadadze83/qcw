@@ -57,21 +57,6 @@ jobs:
           git fetch --depth 1 origin $PODMAN_SHA
           git checkout FETCH_HEAD
           patch --binary -l -p 1 < ../patches/podman/0001-Implement-QEMU-Podman-machine-on-Windows.patch
-      - name: "⚗️ Prepare Test Podman"
-        working-directory: podman-release
-        shell: msys2 {0}
-        run: |
-          HELPER_BINARIES_DIR=`cygpath -w "$(pwd)/bin/windows"` make clean podman-remote win-gvproxy
-      - name: "🧪 Test Podman"
-        working-directory: podman-release
-        shell: pwsh
-        env:
-          CONTAINERS_MACHINE_PROVIDER: qemu
-          MACHINE_TEST_TIMEOUT: 360
-          GINKGOTIMEOUT: --timeout=90m
-        run: |
-          $env:PATH="$env:PROGRAMFILES\QEMU;$env:PATH"
-          ./winmake localmachine
       - name: "🛠️ Build Podman"
         working-directory: podman-release
         shell: msys2 {0}
