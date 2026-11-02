@@ -286,7 +286,7 @@ index 96ca711ea3..fe70f2fee1 100644
  	// "qemu64" level is used, because "host" is not supported with "whpx" acceleration.
  	// It is a stable choice for running on bare metal and inside Hyper-V machine with nested virtualization.
 -	opts := []string{"-machine", "q35,accel=whpx:tcg", "-cpu", "qemu64"}
-+	opts := []string{"-machine", "q35,accel=whpx:tcg", "-cpu", "host"}
++	opts := []string{"-machine", "q35,accel=aehd", "-cpu", "host"}
  	return opts
  }
 -- 
